@@ -34,7 +34,7 @@ pipeline {
         stage('docker run') {
             steps {
                 sh "docker stop 2048-game; docker rm 2048-game"
-                sh "docker run -d -p 8000:8000 --name 2048-game 2048-game"
+                sh "docker run -d -p 8000:8000 --name 2048-game ${env.dockerHubUser}/2048-game"
             }
         }
     }
