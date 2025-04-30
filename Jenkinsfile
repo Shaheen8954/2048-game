@@ -18,25 +18,23 @@ pipeline {
    }
         stage('git clone') {
             steps {
-                git url: "https://github.com/Shaheen8954/2048-game.git", branch: "main"
+                script{
+                 clone("https://github.com/Shaheen8954/2048-game.git", "main")
+                }
             }
         }
       
-        stage('docker build') {
+        stage("docker build") {
             steps {
-                sh "docker build -t 2048-game ."
+               script{
+                docker_build ("2048-game .","shaheen8954")
+                }
             }
         }
         stage('push image on dockerhub') {
             steps {
-                withCredentials([usernamePassword(
-                    'credentialsId':"dockerhub-cred",
-                    passwordVariable:"dockerHubPass",
-                    usernameVariable:"dockerHubUser",)]){
-                sh 'echo $dockerHubPass | docker login -u $dockerHubUser --password-stdin'
-                sh "docker image tag 2048-game ${env.dockerHubUser}/2048-game"
-                sh "docker push ${env.dockerHubUser}/2048-game"
-
+               script{
+                   docker_push("2048-game","shaheen8954")
                 }
             }
         }
