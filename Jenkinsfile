@@ -14,7 +14,7 @@ pipeline {
         }
         stage('docker build') {
             steps {
-                sh "docker build -t 2048-game .
+                sh "docker build -t 2048-game ."
             }
         }
         stage('push image on dockerhub') {
