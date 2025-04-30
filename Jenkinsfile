@@ -2,16 +2,17 @@ pipeline {
     agent any
 
     stages {
+         stage('clean') {
+           steps {
+               cleanWs()
+            }
+        }
         stage('git clone') {
             steps {
                 git url: "https://github.com/Shaheen8954/2048-game.git", branch: "main"
             }
         }
-       stage('clean') {
-           steps {
-               cleanWs()
-            }
-        }
+      
         stage('docker build') {
             steps {
                 sh "docker build -t 2048-game ."
