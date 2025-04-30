@@ -1,3 +1,4 @@
+@Library("Shared") _
 pipeline {
     agent any
 
@@ -7,6 +8,14 @@ pipeline {
                cleanWs()
             }
         }
+        stage("Hello"){
+            steps{
+               script{
+                   hello()
+            }
+       
+        }
+   }
         stage('git clone') {
             steps {
                 git url: "https://github.com/Shaheen8954/2048-game.git", branch: "main"
@@ -33,7 +42,6 @@ pipeline {
         }
         stage('docker run') {
             steps {
-                sh "docker stop 2048-game; docker rm 2048-game"
                 sh "docker run -d -p 8000:8000 shaheen8954/2048-game"
             }
         }
