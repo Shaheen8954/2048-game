@@ -33,7 +33,7 @@ pipeline {
         }
         stage('docker run') {
             steps {
-                sh "docker run -d -p 8000:8000 ${env.dockerHubUser}/2048-game"
+                sh "docker run -d -p 8000:8000 shaheen8954/2048-game"
             }
         }
     }
