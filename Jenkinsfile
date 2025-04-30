@@ -1,4 +1,4 @@
-@Library("jenkins-shared-libraries@main") _
+@Library('EasyShop-jenkins-shared-lib@main') _
 pipeline {
     agent any
 
